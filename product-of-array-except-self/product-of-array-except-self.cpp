@@ -30,7 +30,9 @@ public:
           int a = product/nums[i];
           ans[i]=a;
        }}else if(count==1){
-          for(int i=0;i<n;i++){
+        for(int i=0;i<n;i++){
+            ans[i]=0;
+        }for(int i=0;i<n;i++){
                if(i==k)
                continue;
                else
