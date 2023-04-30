@@ -10,24 +10,20 @@
  */
 class Solution {
 
- int getlength(ListNode* head){
-     ListNode* temp=head;
-     int length =0 ;
 
-     while(temp!=NULL){
-         length++;
-         temp=temp->next;
-     }
-
-     return length;
- }
  
 
 public:
     ListNode* rotateRight(ListNode* head, int k) {
 
-        int len = getlength(head);
+        int len =0 ;
        ListNode* temp=head;
+
+     while(temp!=NULL){
+         len++;
+         temp=temp->next;
+     }
+       temp=head;
        ListNode* prev=NULL;
 
       if(head==NULL || head->next==NULL || k%len==0)
