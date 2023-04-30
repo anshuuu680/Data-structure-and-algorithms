@@ -37,7 +37,7 @@ public:
                 }
             }
             if(temp == NULL && pre != NULL){
-                pre->next = NULL;
+                pre->next = temp;
             }
         } 
         if(pre == NULL){
