@@ -15,9 +15,9 @@ bool solve(TreeNode* a,TreeNode* b){
 
     if(a==NULL && b==NULL)
     return true;
-    else if(a && !b)
+    else if(a==NULL && b!=NULL)
     return false;
-    else if(!a && b)
+    else if(a!=NULL && b==NULL)
     return false;
     else if(a->val!=b->val)
     return false;
