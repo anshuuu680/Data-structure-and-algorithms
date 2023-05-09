@@ -11,28 +11,32 @@
  */
 class Solution {
 
- int height(TreeNode* root){
-     if(root==NULL)
-     return 0;
+pair<int,bool>solve(TreeNode* root){
+    if(root==NULL)
+    return make_pair(0,true);
 
+    pair<int,bool> leftans = solve(root->left);
+    pair<int,bool> rightans = solve(root->right);
 
-    return max( height(root->left), height(root->right))+1;
+    bool diff = abs(leftans.first-rightans.first)<=1;
 
- }
+    bool leftbalanced = leftans.second;
+    bool rightbalanced = rightans.second;
+
+    if(leftbalanced && rightbalanced && diff)
+    return make_pair(max(leftans.first,rightans.first)+1,true);
+    else
+    return make_pair(max(leftans.first,rightans.first)+1,false);
+
+}
 
 public:
     bool isBalanced(TreeNode* root) {
         if(root==NULL)
         return true;
 
-        bool left=isBalanced(root->left);
-        bool right=isBalanced(root->right);
+       pair<int,bool> ans= solve(root);
 
-        bool diff=abs(height(root->left)-height(root->right))<=1;
-
-        if(left && right && diff)
-        return true;
-        else
-        return false;
+       return ans.second;
     }
 };
