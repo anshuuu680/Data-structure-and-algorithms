@@ -11,25 +11,41 @@
  */
 class Solution {
     private:
-   int preInd=0;
-TreeNode* createTree(vector<int>& preorder, vector<int>& inorder,int start, int end){
-    if(start > end){
-        return NULL;
+
+        int preIndex = 0;
+
+  void fillmap(map<int ,int>&mp , vector<int>&inorder ,int n){
+    for(int i = 0 ; i < n ; i ++){
+        mp[inorder[i]] = i;
     }
-    TreeNode* node=new TreeNode(preorder[preInd++]);
-    int pos;
-    for(int i=start;i<=end;i++){
-        if(inorder[i]==node->val){
-            pos=i;
-            break;
+}
+
+TreeNode* solve(vector<int>&pre , vector<int>&in , int s ,int  e  , map<int ,int>&mp)
+{
+        if(s > e){
+            return NULL;
         }
-    }
-    node->left =createTree(preorder, inorder,start,pos-1);
-    node->right =createTree(preorder, inorder, pos+1,end);
-    return node;
+
+        int element = pre[preIndex++];
+
+        TreeNode* root = new TreeNode(element);
+
+        int position = mp[element];
+
+        root->left = solve(pre, in , s , position - 1  , mp);
+        
+        root->right = solve(pre, in , position + 1  , e , mp);
+
+        return root;
 }
+
 public:
-TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder){
-    return createTree(preorder,inorder,0,inorder.size() - 1);
-}
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int n = preorder.size();
+        map<int , int>mp;
+        fillmap(mp , inorder , n);
+
+        return solve(preorder , inorder, 0 , n - 1 , mp);
+
+    }
 };
