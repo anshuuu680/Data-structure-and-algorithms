@@ -29,7 +29,7 @@ TreeNode* createTree(vector<int>& preorder, vector<int>& inorder,int start, int 
     return node;
 }
 public:
-TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder){
     return createTree(preorder,inorder,0,inorder.size() - 1);
 }
 };
