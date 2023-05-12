@@ -11,19 +11,7 @@
  */
 class Solution {
 
-void traverse(TreeNode* root,vector<int>&ans){
 
-      if(root==NULL)
-        return;
-
-        traverse(root->left,ans);
-
-        ans.push_back(root->val);
- 
-        traverse(root->right,ans);
-
-
-}
 
 
 public:
@@ -31,7 +19,29 @@ public:
       
       vector<int>ans;
 
-      traverse(root,ans);
+     TreeNode* curr = root;
+     while(curr!=NULL){
+         if(!curr->left){
+             ans.push_back(curr->val);
+             curr=curr->right;
+         }else{
+             TreeNode* pred = curr->left;
+             while(pred->right!=NULL && pred->right!=curr)
+                 pred=pred->right;
+         
+         
+         // Link creation
+         if(!pred->right){
+             pred->right = curr;
+             curr=curr->left;
+         }else{   // Remove link
+           pred->right=NULL;
+           ans.push_back(curr->val);
+           curr=curr->right;
+         }
+         }
+     }
+     
         
         return ans;
         
