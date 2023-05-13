@@ -12,24 +12,33 @@
  */
 class Solution {
 
- bool check(TreeNode* root,long min,long max){
-      if(root==NULL)
-        return true;
+    long long int ans = LLONG_MIN;
 
-        if(root->val > min && root->val < max){
-        bool left = check(root->left,min,root->val);
-        bool right = check(root->right,root->val,max);
-        return (left && right); 
-        }
+ bool check(TreeNode* root , bool &a){
 
-        return false;
+     if(root==NULL)
+     return NULL;
+
+     
+
+     check(root->left,a);
+     if(ans < root->val)
+     ans=root->val;
+     else
+     a = false;
+
+     check(root->right,a);
+
+     return a;
+
+    
 
  }
 
 public:
     bool isValidBST(TreeNode* root) {
-
-      return check(root,LONG_MIN,LONG_MAX);
+       bool a = true;
+      return check(root,a);
         
     }
 };
