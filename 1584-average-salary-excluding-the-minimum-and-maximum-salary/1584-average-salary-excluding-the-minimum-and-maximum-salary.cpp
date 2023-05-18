@@ -5,24 +5,21 @@ public:
         int mini = INT_MAX;
         int maxi = INT_MIN;   
 
+        double sum =0;
+        double ans = 0;
+        
         for(int i=0;i<salary.size();i++){
             mini=min(mini,salary[i]);
             maxi=max(maxi,salary[i]);
-        }     
-
-        double sum =0;
-        int count=0;
-
-        for(int i=0;i<salary.size();i++){
-            if(salary[i]==mini || salary[i]==maxi)
-            continue;
-            else{
-           count++;
             sum+=salary[i];
-            }
-        }
-        
+        }  
 
-        return sum/count;
+
+
+    ans =  (sum - mini - maxi)/(salary.size()-2);
+       
+
+
+        return ans;
     }
 };
