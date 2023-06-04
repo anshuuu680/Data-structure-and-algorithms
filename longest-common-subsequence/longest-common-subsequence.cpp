@@ -19,6 +19,8 @@ class Solution {
 
   int solvetab(string &a,string &b){
         vector<vector<int>>dp(a.length()+1,vector<int>(b.length()+1,0));
+        
+        vector<int>curr();
 
       for(int i = a.length()-1;i>=0;i--){
           for(int j= b.length()-1;j>=0;j--){
@@ -35,6 +37,9 @@ class Solution {
 
       return dp[0][0];
   }
+
+
+
 
 public:
     int longestCommonSubsequence(string text1, string text2) {
