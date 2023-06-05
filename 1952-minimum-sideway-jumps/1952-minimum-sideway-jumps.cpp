@@ -29,19 +29,51 @@ class Solution {
 
   }
 
-//   int solvetab(vector<int>& obs){
+  int solvetab(vector<int>& obs){
+       vector<vector<int>> dp(4,vector<int>(obs.size(),INT_MAX));
+
+       for(int i=0;i<=3;i++){
+           dp[i][obs.size()-1] = 0; 
+       }
+
+       for(int currlane=1;currlane<=3;currlane++){
+           for(int currpos=obs.size()-1;currpos>=0;currpos--){
 
 
-//   }
+                 int ans = INT_MAX;
+
+      if(obs[currpos+1]!=currlane){
+          return dp[currlane][currpos+1];
+      }else{
+
+          for(int lane =1;lane <=3;lane++){
+              if(lane!=currlane && obs[currpos]!=lane){
+                 ans = min(ans,1+dp[lane][currpos]);
+              }
+          }
+      }
+
+
+    dp[currlane][currpos] =  ans;
+
+           }
+       }
+
+       return dp[2][0];
+
+
+
+
+
+
+  }
 
 
 public:
     int minSideJumps(vector<int>& obstacles) {
      vector<vector<int>> dp(4,vector<int>(obstacles.size(),-1));
-        int currlane = 2;
-        int currpos = 0;
-
-        return solve(obstacles,currlane,currpos,dp);
+       
+        return solve(obstacles,2,0,dp);
         
     }
 };
