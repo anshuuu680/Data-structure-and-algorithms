@@ -5,7 +5,6 @@ public:
 
         vector<int>ans(2*n);
 
-        int j=0;
 
         for(int i=0;i<n;i++){
 
