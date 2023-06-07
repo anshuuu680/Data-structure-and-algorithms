@@ -10,39 +10,38 @@
  */
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) {
-
-        ListNode* temp = head;
-        ListNode* pre = NULL;
-        
-      
-        while(temp != NULL){
-
-            int k = 0;
-            ListNode* curr = temp; //Initialize current pointer to temp
-            
-            while((temp != NULL) && (temp->val == curr->val)){
-                temp = temp->next;
-                k++;
-            }
-
-            if(k == 1){
-
-                if(pre == NULL){
-                    head = curr;
-                    pre = curr;
-                }else{
-                    pre->next = curr;
-                    pre = curr;
-                }
-            }
-            if(temp == NULL && pre != NULL){
-                pre->next = temp;
-            }
-        } 
-        if(pre == NULL){
-            head = NULL;
-        }
-        return head;
+   ListNode* deleteDuplicates(ListNode* head) {
+    if (head == NULL) {
+        return NULL;
     }
+
+    
+
+    ListNode* temp = head;
+    ListNode* prev = NULL;
+
+    while (temp->next != NULL) {
+        ListNode* curr = temp;
+        int k = 0;
+
+        while (temp->next != NULL && temp->val == temp->next->val) {
+            temp = temp->next;
+            k++;
+        }
+
+        if (k) {
+            if (prev == NULL)
+                head = temp->next;
+            else
+                prev->next = temp->next;
+        } else 
+            prev = temp;
+       
+        if (temp->next != NULL) 
+        temp = temp->next;
+    }
+
+    return head;
+}
+
 };
