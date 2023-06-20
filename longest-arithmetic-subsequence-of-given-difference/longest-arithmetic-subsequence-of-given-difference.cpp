@@ -9,15 +9,8 @@ public:
 
 
     for(int i=0;i<nums.size();i++){
-        int temp = nums[i] - difference;
-        int tempAns = 0;
-
-        if(dp.count(temp))
-        tempAns = dp[temp];
-
-        dp[nums[i]]=1 + tempAns;
+      dp[nums[i]]=dp[nums[i]-difference] + 1;
         ans=max(ans,dp[nums[i]]);
-
     }
 
 
