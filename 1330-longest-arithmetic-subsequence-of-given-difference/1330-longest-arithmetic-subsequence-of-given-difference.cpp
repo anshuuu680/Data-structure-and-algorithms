@@ -2,15 +2,27 @@
 class Solution {
 public:
    int longestSubsequence(vector<int>& nums, int difference) {
-    unordered_map<int, int> dp;
-    int result = 1;
+  
+   unordered_map<int,int>dp;
 
-    for (int num : nums) {
-        dp[num] = dp[num - difference] + 1;
-        result = max(result, dp[num]);
+    int ans = 0;
+
+
+    for(int i=0;i<nums.size();i++){
+        int temp = nums[i] - difference;
+        int tempAns = 0;
+
+        if(dp.count(temp))
+        tempAns = dp[temp];
+
+        dp[nums[i]]=1 + tempAns;
+        ans=max(ans,dp[nums[i]]);
+
     }
 
-    return result;
+
+return ans;
+
 }
 
 };
