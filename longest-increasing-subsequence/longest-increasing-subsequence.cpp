@@ -50,7 +50,7 @@ public:
 
          int maxLen = 0;
     for (int i = 0; i < n; i++) {
-        maxLen = std::max(maxLen, dp[i]);
+        maxLen = max(maxLen, dp[i]);
     }
 
     return maxLen;
