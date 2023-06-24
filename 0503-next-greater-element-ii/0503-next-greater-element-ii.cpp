@@ -1,23 +1,32 @@
 class Solution {
 public:
  vector<int> nextGreaterElements(vector<int>& nums) {
-    int n = nums.size();
-    vector<int> ans;
-    for (int i = 0; i < n; i++) {
-        int ele = nums[i];
-        bool flag = false;
-        for (int j = i + 1; j < n+i; j++) {  // Corrected loop condition
-            if (nums[j % n] > ele) {
-                ans.push_back(nums[j % n]);  // Push the next greater element
-                flag = true;
-                break;
-            }
-        }
-        if (!flag)
-            ans.push_back(-1);
+
+stack<int> s;
+    vector<int> v(nums.size());
+
+    for(int i=nums.size()-1;i>=0;i--)
+    {
+        while(!s.empty() && s.top()<=nums[i])
+            s.pop();
+        if(s.empty())
+            v[i]=-1;
+        else
+            v[i]=s.top();
+        s.push(nums[i]);
     }
-    return ans;
-}
+    for(int i=nums.size()-1;i>=0;i--)
+    {   
+        
+        while(!s.empty() && s.top()<=nums[i])
+            s.pop();
+        if(s.empty())
+            v[i]=-1;
+        else
+            v[i]=s.top();
+        s.push(nums[i]);
+    }
+    return v;
 
-
+ }
 };
