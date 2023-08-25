@@ -1,22 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Solution {
+    List<List<Integer>> ans = new ArrayList<>();
+
+    public void helper(int[] candidates, int target, int i, int currsum, List<Integer> temp) {
+        if (currsum > target) {
+            return;
+        }
+        if (i == candidates.length) {
+            if (currsum == target) {
+                ans.add(new ArrayList<>(temp));
+            }
+            return;
+        }
+        currsum += candidates[i];
+        temp.add(candidates[i]);
+        helper(candidates, target, i, currsum, temp);
+        currsum -= candidates[i];
+        temp.remove(temp.size() - 1);
+        helper(candidates, target, i + 1, currsum, temp);
+    }
+
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-    	  Arrays.sort(candidates);
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        solve(result, new ArrayList<Integer>(), candidates, target, 0);
-        
-        return result;
+        List<Integer> temp = new ArrayList<>();
+        helper(candidates, target, 0, 0, temp);
+        return ans;
     }
+
     
-    private void solve(List<List<Integer>> result, List<Integer> cur, int candidates[], int target, int index){
-    	if(target > 0){
-    		for(int i = index; i < candidates.length && target >= candidates[i]; i++){
-    			cur.add(candidates[i]);
-    			solve(result, cur, candidates, target - candidates[i], i);
-    			cur.remove(cur.size() - 1);
-    		}
-    	}
-    	else if(target == 0 ){
-    		result.add(new ArrayList<Integer>(cur));
-    	}
-    }
+  
 }
