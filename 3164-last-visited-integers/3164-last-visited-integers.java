@@ -1,23 +1,23 @@
 class Solution {
     public List<Integer> lastVisitedIntegers(List<String> words) {
-        ArrayList<Integer> ans = new ArrayList<>();
-        ArrayList<Integer> temp = new ArrayList<>();
-        int prev_counter = 0;
-
-        for (int i = 0; i < words.size(); i++) {
-            if ("prev".equals(words.get(i))) { 
-                prev_counter++;
-                if (prev_counter > temp.size()) {
-                    ans.add(-1);
-                } else {
-                    ans.add(temp.get(temp.size() - prev_counter));
-                }
+        final List<Integer> answers = new ArrayList<>();
+        final List<Integer> numbers = new ArrayList<>();
+        
+        int prevSeen = 0;
+        
+        for(String word: words){
+            if("prev".equals(word)){
+                prevSeen++;
+                
+                int i = numbers.size() - prevSeen;
+                
+                answers.add(0 <= i ? numbers.get(i) : -1);
             } else {
-                prev_counter = 0;
-                temp.add(Integer.valueOf(words.get(i)));
+                prevSeen = 0;
+                numbers.add(Integer.valueOf(word));
             }
         }
-
-        return ans;
+        
+        return answers;
     }
 }
