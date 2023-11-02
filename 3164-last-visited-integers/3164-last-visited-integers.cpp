@@ -11,11 +11,8 @@ public:
             string word = words[i];
             if (word == "prev") {
                 p_Count++;
-                if (p_Count > nums.size()) {
-                    ans.push_back(-1);
-                } else {
-                    ans.push_back(nums[nums.size() - p_Count]);
-                }
+               int k = nums.size() - p_Count;
+               ans.push_back(0<=k?nums[k]:-1);
             } else {
                 int num = stoi(word);
                 nums.push_back(num);
