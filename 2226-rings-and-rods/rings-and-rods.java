@@ -3,9 +3,7 @@ class Solution {
          Map<Integer, Set<Character>> ms = new HashMap<>();
 
         for (int i = 0; i < rings.length() - 1; i += 2) {
-            int key = rings.charAt(i + 1) - '0';
-            char value = rings.charAt(i);
-            ms.computeIfAbsent(key, k -> new HashSet<>()).add(value);
+            ms.computeIfAbsent(rings.charAt(i + 1) - '0', k -> new HashSet<>()).add( rings.charAt(i));
         }
 
         int count = 0;
