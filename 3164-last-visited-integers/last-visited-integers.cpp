@@ -7,8 +7,7 @@ public:
         vector<int> nums;  
         int p_Count = 0; 
 
-        for (int i = 0; i<n; i++) {
-            string word = words[i];
+        for (auto word:words) {
             if (word == "prev") {
                 p_Count++;
                int k = nums.size() - p_Count;
