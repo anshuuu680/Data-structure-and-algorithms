@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/last-visited-integers">3164. Last Visited Integers</a></h2><h3>Easy</h3><hr><p>Given a <strong>0-indexed</strong> array of strings <code>words</code> where <code>words[i]</code> is either a positive integer represented as a string or the string <code>&quot;prev&quot;</code>.</p>
+<h2><a href="https://leetcode.com/problems/last-visited-integers">Last Visited Integers</a></h2> <img src='https://img.shields.io/badge/Difficulty-Easy-brightgreen' alt='Difficulty: Easy' /><hr><p>Given a <strong>0-indexed</strong> array of strings <code>words</code> where <code>words[i]</code> is either a positive integer represented as a string or the string <code>&quot;prev&quot;</code>.</p>
 
 <p>Start iterating from the beginning of the array; for every <code>&quot;prev&quot;</code> string seen in <code>words</code>, find the <strong>last visited integer</strong> in <code>words</code> which is defined as follows:</p>
 
