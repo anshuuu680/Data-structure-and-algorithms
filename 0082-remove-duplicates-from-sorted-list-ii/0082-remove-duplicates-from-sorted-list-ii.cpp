@@ -11,38 +11,20 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-
-        ListNode* temp = head;
-        ListNode* pre = NULL;
+        ListNode* temp=new ListNode(0,head);//dummy node
+        ListNode* prev=temp;
         
-      
-        while(temp != NULL){
-
-            int k = 0;
-            ListNode* curr = temp; //Initialize current pointer to temp
-            
-            while((temp != NULL) && (temp->val == curr->val)){
-                temp = temp->next;
-                k++;
+        while(head!=NULL){
+            if(head->next!=NULL && head->val==head->next->val){
+               while(head->next!=NULL && head->val==head->next->val){
+                   head=head->next;
+               }
+                prev->next=head->next;
+            }else{
+                prev=prev->next;
             }
-
-            if(k == 1){
-
-                if(pre == NULL){
-                    head = curr;
-                    pre = curr;
-                }else{
-                    pre->next = curr;
-                    pre = curr;
-                }
-            }
-            if(temp == NULL && pre != NULL){
-                pre->next = temp;
-            }
-        } 
-        if(pre == NULL){
-            head = NULL;
+            head=head->next;
         }
-        return head;
+        return temp->next;
     }
 };
