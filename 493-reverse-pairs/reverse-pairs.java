@@ -1,6 +1,8 @@
-import java.util.*;
-
 class Solution {
+
+    public int reversePairs(int[] nums) {
+        return mergeSort(nums, 0, nums.length - 1);
+    }
 
     public int mergeSort(int[] nums, int low, int high) {
         int count = 0;
@@ -9,54 +11,45 @@ class Solution {
 
             count += mergeSort(nums, low, mid);
             count += mergeSort(nums, mid + 1, high);
-            count += countPairs(nums, low, mid, high);
-
-            merge(nums, low, mid, high);
+            count += merge(nums, low, mid, high);
         }
         return count;
     }
 
-    public void merge(int[] nums, int low, int mid, int high) {
-        int left = low, right = mid + 1;
+    public int merge(int[] nums, int low, int mid, int high) {
+        int count = 0;
+        int[] temp = new int[high - low + 1]; // Temporary array to store merged values
+        int left = low, right = mid + 1, index = 0;
 
-        List<Integer> temp = new ArrayList<>();
+        while (left <= mid && right <= high) {
+            if ((long) nums[left] > 2 * (long) nums[right]) {
+                count += mid - left + 1; // Counting reverse pairs
+                right++;
+            } else {
+                left++;
+            }
+        }
+
+        left = low;
+        right = mid + 1;
 
         while (left <= mid && right <= high) {
             if (nums[left] <= nums[right]) {
-                temp.add(nums[left++]);
+                temp[index++] = nums[left++];
             } else {
-                temp.add(nums[right++]);
+                temp[index++] = nums[right++];
             }
         }
 
         while (left <= mid) {
-            temp.add(nums[left++]);
+            temp[index++] = nums[left++];
         }
 
         while (right <= high) {
-            temp.add(nums[right++]);
+            temp[index++] = nums[right++];
         }
 
-        int index = low;
-        for (int num : temp) {
-            nums[index++] = num;
-        }
-    }
-
-    public int countPairs(int[] nums, int low, int mid, int high) {
-        int count = 0;
-        int right = mid + 1;
-
-        for (int i = low; i <= mid; i++) {
-            while (right <= high && (0.5*nums[i]) > nums[right]) {
-                right++;
-            }
-            count += right - (mid + 1);
-        }
+        System.arraycopy(temp, 0, nums, low, temp.length); // Copying merged values back to original array
         return count;
-    }
-
-    public int reversePairs(int[] nums) {
-        return mergeSort(nums, 0, nums.length - 1);
     }
 }
