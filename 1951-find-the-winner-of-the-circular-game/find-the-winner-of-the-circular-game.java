@@ -1,12 +1,15 @@
 class Solution {
     public int findTheWinner(int n, int k) {
-        return helper(n, k) + 1;
-    }
+       
+       int pos = 0;
 
-    private int helper(int n, int k) {
-        if (n == 1) {
-            return 0;
-        }
-        return (helper(n - 1, k) + k) % n;
+       for(int i=1;i<=n;i++){
+        pos = (pos+k)%i;
+       }
+
+
+       return pos+1;
+
+        
     }
 }
