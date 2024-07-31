@@ -1,26 +1,34 @@
-import java.util.*;
-
-public class Solution {
+class Solution {
     public List<String> letterCombinations(String digits) {
         List<String> ans = new ArrayList<>();
-        String[] mapping = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        solve(digits, "", 0, ans, mapping);
-        return ans;
+
+        String[] map = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+        solve(digits,map,0,"",ans);
+
+        return ans; 
+
     }
 
-    static void solve(String digits, String output, int index, List<String> ans, String[] mapping) {
-        if (index >= digits.length()) {
-            if (output.length() > 0)
-                ans.add(output);
-            return;
-        }
 
-        int number = digits.charAt(index) - '0';
-        String value = mapping[number];
+   private void solve(String digits,String[] map,int index,String output,List<String> ans){
 
-        for (int i = 0; i < value.length(); i++) {
-            solve(digits, output + value.charAt(i), index + 1, ans, mapping);    //output.append(value.charAt(i));
-          // Backtracking   -->   output.deleteCharAt(output.length() - 1);
-        }
+    if(index==digits.length()){
+        if(output.length()>0)
+        ans.add(output);
+        return;
     }
+
+    int num = digits.charAt(index) - '0';
+
+    String mapper = map[num];
+
+    for(int i=0;i<mapper.length();i++){
+        solve(digits,map,index+1,output+mapper.charAt(i),ans);
+    }
+
+
+
+   }
+
 }
