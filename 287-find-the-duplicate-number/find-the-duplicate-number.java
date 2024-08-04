@@ -1,30 +1,37 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-          int l =1;
-        int h = nums.length-1;
-        int count;
+        int low = 1;
+        int high = nums.length-1;
+        
+        while(low<=high){
+         int count = 0;
+        int mid = 0;
 
-        while(l<=h){
-           int mid = l +(h-l)/2;
-            count=0;
+         for(int i=0;i<nums.length;i++){
+             mid = low + (high - low)/2;
 
-            for(int i=0;i<nums.length;i++)
-           { 
+
+            // check how many elements are less than mid index
+
             if(nums[i]<=mid)
-            count++; 
-            }
+            count++;
+         }
 
-            if(count<=mid)
-            l = mid+1;
-            else
-            h = mid - 1;
+         // 1.condition 
+
+         // if counted elements are less than mid index than we will check i           in the left portion
+
+         if(count<=mid)
+         low = mid + 1;
+         else
+         high = mid - 1;
+
+           
+
         }
 
-       
 
-        return l; 
-
-      
-    
+        return low;
+        
     }
 }
