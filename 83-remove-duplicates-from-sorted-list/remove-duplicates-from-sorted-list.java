@@ -19,14 +19,14 @@ public class Solution {
         while (temp != null && temp.next != null) {
             if (temp.val == temp.next.val) {
                 ListNode del = temp.next;
-                if (temp.next.next == null) {
+                if (temp.next.next == null) 
                     temp.next = null;
-                } else {
+                 else 
                     temp.next = temp.next.next;
-                }
-            } else {
+                
+            } else 
                 temp = temp.next;
-            }
+            
         }
 
         return head;
