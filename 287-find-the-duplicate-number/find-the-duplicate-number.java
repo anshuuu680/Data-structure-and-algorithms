@@ -19,7 +19,7 @@ class Solution {
 
          // 1.condition 
 
-         // if counted elements are less than mid index than we will check i           in the left portion
+         // if counted elements are less than mid index than we will check i in the left portion
 
          if(count<=mid)
          low = mid + 1;
