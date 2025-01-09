@@ -6,7 +6,7 @@ public class Solution {
         int mid = s + (e - s) / 2;
 
         while (s < e) {
-            if (nums[mid] >= nums[0]) {
+            if (nums[mid] > nums[e]) {
                 s = mid + 1;
             } else {
                 e = mid;
