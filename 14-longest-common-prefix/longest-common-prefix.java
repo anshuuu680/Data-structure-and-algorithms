@@ -14,7 +14,7 @@ class Solution {
 
             int i = 0;
             
-            while(i<first.length() && i<last.length()){
+            while(i<first.length() ){
 
                 if(first.charAt(i) == last.charAt(i)){
                     ans+=first.charAt(i);
