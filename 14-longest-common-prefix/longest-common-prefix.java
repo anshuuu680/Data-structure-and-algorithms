@@ -5,7 +5,7 @@ class Solution {
             return "";
         }
              
-             String ans = "";
+           
 
             Arrays.sort(strs);
 
@@ -17,14 +17,14 @@ class Solution {
             while(i<first.length() ){
 
                 if(first.charAt(i) == last.charAt(i)){
-                    ans+=first.charAt(i);
+                   
                     i++;
                 }else
                 break;
                 
             }
 
-            return ans;
+           return i==0?"":first.substring(0,i);
 
     }
 }
