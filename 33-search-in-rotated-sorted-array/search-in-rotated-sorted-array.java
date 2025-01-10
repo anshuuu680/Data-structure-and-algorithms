@@ -1,48 +1,29 @@
-public class Solution {
+class Solution {
+    public int search(int[] nums, int target) { 
 
-    private int findPivot(int[] nums) {
-        int s = 0;
-        int e = nums.length - 1;
-        int mid = s + (e - s) / 2;
+    int low = 0;
+    int high = nums.length - 1;
+    
+    while(low<=high){
+        int mid = low + (high - low)/2;
 
-        while (s < e) {
-            if (nums[mid] > nums[e]) {
-                s = mid + 1;
-            } else {
-                e = mid;
-            }
+        if(nums[mid]==target)
+        return mid;
 
-            mid = s + (e - s) / 2;
-        }
-
-        return s;
-    }
-
-    private int bSearch(int[] nums, int s, int n, int key) {
-        int starting = s;
-        int ending = n;
-        int mid = (starting + ending) / 2;
-        while (starting <= ending) {
-            if (nums[mid] == key) {
-                return mid;
-            } else if (nums[mid] > key) {
-                ending = mid - 1;
-            } else {
-                starting = mid + 1;
-            }
-            mid = (starting + ending) / 2;
-        }
-        return -1;
-    }
-
-    public int search(int[] nums, int target) {
-        int e = nums.length - 1;
-        int pivot = findPivot(nums);
-
-        if (nums[pivot] <= target && target <= nums[e]) {
-            return bSearch(nums, pivot, e, target);
-        } else {
-            return bSearch(nums, 0, pivot - 1, target);
+        if(nums[low]<=nums[mid]){  // left part is sorted
+            if(nums[low]<=target && target<=nums[mid]){
+                high = mid-1;
+            }else
+            low = mid+1;
+        }else{
+            if(nums[mid]<+target && target <= nums[high]){  
+                low = mid+1;
+            }else
+            high = mid-1;
         }
     }
+    return -1;
+        
+    }
+
 }
