@@ -1,20 +1,30 @@
 class Solution {
     public boolean uniqueOccurrences(int[] arr) {
-        // make a hashmap
 
-        HashMap<Integer, Integer> mp = new HashMap<>();
-        for (int a : arr)
-            mp.put(a, mp.getOrDefault(a, 0) + 1);
-    
-        HashSet<Integer> hs = new HashSet<>(); // for the frequencies
+        // This depends on the constraints
 
-        for(int value : mp.values()){
-            if(!hs.add(value))
+        int[] freq = new int[2000];
+
+        for(int obj:arr)
+        freq[obj+1000]++;
+
+        // tracking array 
+
+        boolean[] track = new boolean[2000];
+
+        for(int obj:freq){
+            if(obj>0){
+
+            if(track[obj])
             return false;
+            }
+
+            track[obj] = true;
         }
 
 
         return true;
-}
 
+        
+    }
 }
