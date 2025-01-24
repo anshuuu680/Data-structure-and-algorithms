@@ -1,24 +1,36 @@
-public class Solution {
+class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-    	  Arrays.sort(candidates);
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        solve(result, new ArrayList<Integer>(), candidates, target, 0);
-        
-        return result;
+
+        List<List<Integer>> ans = new ArrayList<>();
+
+         solve(candidates,target,0,0,new ArrayList<>(),ans);
+
+         return ans;
     }
-    
-    private void solve(List<List<Integer>> result, List<Integer> cur, int candidates[], int target, int index){
-    	if(target > 0){
-    		for(int i = index; i < candidates.length && target >= candidates[i]; i++){
-            if (i > index && candidates[i] == candidates[i - 1])
-                    continue;
-    			cur.add(candidates[i]);
-    			solve(result, cur, candidates, target - candidates[i], i);
-    			cur.remove(cur.size() - 1);
-    		}
-    	}
-    	else if(target == 0 ){
-    		result.add(new ArrayList<Integer>(cur));
-    	}
+
+    public void solve(int[] nums, int target,int index,int sum,List<Integer> output, List<List<Integer>> ans){
+
+         if (sum > target) {
+            return;
+        }
+        if (index == nums.length) {
+            if (sum == target) {
+                ans.add(new ArrayList<>(output));
+            }
+            return;
+        }
+
+        // add in sum
+        sum+= nums[index];
+        //add in output array
+        output.add(nums[index]);
+        //recursive call
+        solve(nums,target,index,sum,output,ans);
+
+        // backtracking 
+        sum-= nums[index];
+        output.remove(output.size()-1);
+        solve(nums,target,index+1,sum,output,ans);
+
     }
 }
