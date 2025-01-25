@@ -23,7 +23,7 @@ public class Solution {
                 solution.add(new String(rowArr));
             }
             ans.add(solution);
-            return;
+            return; 
         }
 
         for (int col = 0; col < arr.length; col++) {
