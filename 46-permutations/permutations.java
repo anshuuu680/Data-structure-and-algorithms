@@ -1,21 +1,20 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
+        // Make 2d list 
 
         List<List<Integer>> ans = new ArrayList<>();
-
         solve(nums,ans,0);
-
         return ans;
-        
     }
 
     public void solve(int[] nums,List<List<Integer>> ans,int index){
-
         if(index>=nums.length){
-        List<Integer> temp = new ArrayList<>();
+            // make output list 
+            List<Integer> output = new ArrayList<>();
             for(int num:nums)
-            temp.add(num);
-            ans.add(temp);
+            output.add(num);
+
+            ans.add(output);
         }
 
         for(int i=index;i<nums.length;i++){
@@ -23,13 +22,11 @@ class Solution {
             solve(nums,ans,index+1);
             swap(nums,index,i);
         }
-
     }
 
-    private void swap(int[]nums,int l,int r){
-        int temp = nums[l];
-        nums[l] = nums[r];
-        nums[r] = temp;
+    public void swap(int[] nums,int x,int y){
+        int temp = nums[x];
+        nums[x] = nums[y];
+        nums[y]  = temp;
     }
-
 }
